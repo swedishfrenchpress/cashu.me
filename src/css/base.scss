@@ -6,6 +6,8 @@ $themes: (
     info: #333646,
     marginal-bg: #1f2234,
     marginal-text: #fff,
+    card-bg: darken(#1f2234, 5%),
+    card-btn-bg: darken(#1f2234, 2%),
   ),
   "bitcoin": (
     primary: #ff9853,
@@ -14,6 +16,8 @@ $themes: (
     info: #333646,
     marginal-bg: #2d293b,
     marginal-text: #fff,
+    card-bg: darken(#2d293b, 5%),
+    card-btn-bg: darken(#2d293b, 2%),
   ),
   "freedom": (
     primary: #e22156,
@@ -22,6 +26,8 @@ $themes: (
     info: #1b1b1b,
     marginal-bg: #2d293b,
     marginal-text: #fff,
+    card-bg: darken(#0a0a0a, 5%),
+    card-btn-bg: darken(#0a0a0a, 2%),
   ),
   "salvador": (
     primary: #2d68d5,
@@ -30,6 +36,8 @@ $themes: (
     info: #333646,
     marginal-bg: #242424,
     marginal-text: #fff,
+    card-bg: darken(#242424, 5%),
+    card-btn-bg: darken(#242424, 2%),
   ),
   "mint": (
     primary: #3ab77d,
@@ -38,6 +46,8 @@ $themes: (
     info: #334642,
     marginal-bg: #1f342b,
     marginal-text: #fff,
+    card-bg: darken(#1f342b, 5%),
+    card-btn-bg: darken(#1f342b, 2%),
   ),
   "autumn": (
     primary: #b7763a,
@@ -46,6 +56,8 @@ $themes: (
     info: #463f33,
     marginal-bg: #342a1f,
     marginal-text: rgb(255, 255, 255),
+    card-bg: darken(#34291f, 5%),
+    card-btn-bg: darken(#34291f, 2%),
   ),
   "flamingo": (
     primary: #ff64b4,
@@ -54,6 +66,8 @@ $themes: (
     info: #56353a,
     marginal-bg: #56353a,
     marginal-text: rgb(255, 255, 255),
+    card-bg: darken(#56353f, 5%),
+    card-btn-bg: darken(#56353f, 2%),
   ),
   "monochrome": (
     primary: #ededed,
@@ -62,6 +76,8 @@ $themes: (
     info: rgb(39, 39, 39),
     marginal-bg: #000,
     marginal-text: rgb(255, 255, 255),
+    card-bg: #1c1c1e,
+    card-btn-bg: #2C2C2E,
   ),
   "cyber": (
     primary: #00ff00,
@@ -70,6 +86,8 @@ $themes: (
     info: #1b1b1b,
     marginal-bg: #000,
     marginal-text: rgb(255, 255, 255),
+    card-bg: #1c1c1e,
+    card-btn-bg: #0b320b,
   ),
 );
 @each $theme, $colors in $themes {
