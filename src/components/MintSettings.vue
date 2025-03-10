@@ -16,87 +16,108 @@
             :active="mint.url == activeMintUrl"
             active-class="text-weight-bold text-primary"
             clickable
-            class="q-pb-xs q-pl-xs"
+            @click="
+              activateMintUrl(mint.url, (verbose = false), (force = true))
+            "
+            class="mint-card q-mb-md cursor-pointer"
+            :style="{
+              'border-radius': '8px',
+              'background-color': '#0f0f0f',
+              border:
+                mint.url == activeMintUrl
+                  ? '1px solid #8e8e93'
+                  : '1px solid #181818',
+              padding: '8px',
+            }"
           >
-            <q-item-section avatar style="min-width: 36px; max-width: 39px">
-              <q-icon
-                :color="mint.url == activeMintUrl ? 'primary' : 'grey'"
-                :name="
-                  mint.url == activeMintUrl
-                    ? 'check_circle'
-                    : 'radio_button_unchecked'
-                "
-                @click="
-                  activateMintUrl(mint.url, (verbose = false), (force = true))
-                "
-                class="cursor-pointer"
-              />
-            </q-item-section>
-            <q-avatar
-              v-if="getMintIconUrl(mint)"
-              size="32px"
-              class="q-mr-sm q-mt-xs"
-            >
-              <img :src="getMintIconUrl(mint)" alt="Mint Icon" />
-            </q-avatar>
-            <q-item-section>
-              <q-item-label
-                lines="1"
-                v-if="mint.nickname"
-                @click="
-                  activateMintUrl(mint.url, (verbose = false), (force = false))
-                "
-                class="cursor-pointer"
-                style="word-break: break-all; font-weight: bold"
-                >{{ mint.nickname }}</q-item-label
-              >
-              <q-item-label
-                lines="1"
-                @click="
-                  activateMintUrl(mint.url, (verbose = false), (force = false))
-                "
-                class="cursor-pointer"
-                style="
-                  word-break: break-all;
-                  overflow-wrap: break-word;
-                  white-space: normal;
-                  font-family: monospace;
-                  font-size: 0.9em;
-                "
-                >{{ mint.url }}</q-item-label
-              >
-              <q-item-label>
-                <q-badge
-                  v-for="unit in mintClass(mint).units"
-                  :key="unit"
-                  :color="mint.url == activeMintUrl ? 'primary' : 'grey-5'"
-                  :outline="mint.url != activeMintUrl || unit != activeUnit"
-                  :label="
-                    formatCurrency(mintClass(mint).unitBalance(unit), unit)
-                  "
-                  class="q-mr-xs q-mb-xs"
-                />
-              </q-item-label>
-            </q-item-section>
-            <q-item-section side>
-              <q-icon
-                name="info_outline"
-                @click="showMintInfo(mint)"
-                color="grey"
-                class="cursor-pointer q-pb-sm"
-                size="1.3rem"
-              />
-              <q-icon
-                name="edit"
-                @click="editMint(mint)"
-                class="cursor-pointer"
-                color="grey"
-                size="1.3rem"
-              />
-            </q-item-section>
-          </q-item>
+            <div class="full-width">
+              <div class="row items-center">
+                <div class="col">
+                  <div class="row items-center">
+                    <q-avatar
+                      v-if="getMintIconUrl(mint)"
+                      size="34px"
+                      class="q-mr-sm"
+                    >
+                      <img :src="getMintIconUrl(mint)" alt="Mint Icon" />
+                    </q-avatar>
 
-          <q-separator spaced style="margin-left: 50px" />
+                    <div class="column q-gutter-y-sm">
+                      <div
+                        v-if="mint.nickname"
+                        class="text-weight-medium"
+                        style="font-size: 14px; line-height: 16px"
+                      >
+                        {{ mint.nickname }}
+                      </div>
+                      <div
+                        class="text-grey-6"
+                        style="
+                          font-size: 14px;
+                          line-height: 16px;
+                          font-family: monospace;
+                          margin-top: 4px;
+                        "
+                      >
+                        {{ mint.url }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-between q-pt-md">
+                <div class="col">
+                  <!-- Currency units with regular text styling -->
+                  <div class="row q-gutter-x-sm">
+                    <div
+                      v-for="unit in mintClass(mint).units"
+                      :key="unit"
+                      style="
+                        border-radius: 4px;
+                        background-color: #1d1d1d;
+                        padding: 8px;
+                        display: inline-block;
+                      "
+                    >
+                      <span
+                        style="
+                          color: white;
+                          font-size: 12px;
+                          font-family: monospace;
+                          font-weight: 500;
+                        "
+                      >
+                        {{
+                          formatCurrency(
+                            mintClass(mint).unitBalance(unit),
+                            unit
+                          )
+                        }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-auto">
+                  <q-icon
+                    name="info_outline"
+                    @click.stop="showMintInfo(mint)"
+                    color="grey"
+                    class="cursor-pointer q-mr-sm"
+                    size="1.3rem"
+                  />
+                  <q-icon
+                    name="edit"
+                    @click.stop="editMint(mint)"
+                    class="cursor-pointer"
+                    color="grey"
+                    size="1.3rem"
+                  />
+                </div>
+              </div>
+            </div>
+          </q-item>
         </div>
       </q-list>
     </div>
